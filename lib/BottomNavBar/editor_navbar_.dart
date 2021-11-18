@@ -25,43 +25,41 @@ class _EditorBottomNavBar extends State<EditorBottomNavBar> {
         key.currentState!.contract();
     });
   }
-
   void _toggle() {
     setState(() {
       key.currentState!.expand();
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery. of(context). size. height;
+    double screenHeight = MediaQuery. of(context).size.height;
     return ExpandableBottomSheet(
       key: key,
       enableToggle: true,
-      background: editorTextModeTap == true ? Container(
-        child: RotatedBox(
-          quarterTurns: 3,
-          child: Padding(
-            padding: EdgeInsets.only(right: screenHeight/5),
-            child: SizedBox(
-              height: 40,
-              width: screenHeight/3,
-              child: SliderTheme(
-                data: const SliderThemeData(
-                    activeTrackColor: Color(0xFF787880),
-                    inactiveTrackColor: Color(0xB3787880),
-                    thumbColor: Colors.white,
-                    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15)),
-                child: Slider(
-                  value: _currentSliderValue,
-                  min: 0,
-                  max: 100,
-                  divisions: 5,
-                  onChanged: (double value) {
-                    setState(() {
-                      _currentSliderValue = value;
-                    });
-                  },
-                ),
+      background: editorTextModeTap == true ? RotatedBox(
+        quarterTurns: 3,
+        child: Padding(
+          padding: EdgeInsets.only(right: screenHeight/5),
+          child: SizedBox(
+            height: 40,
+            width: screenHeight/3,
+            child: SliderTheme(
+              data: const SliderThemeData(
+                  activeTrackColor: Color(0xFF787880),
+                  inactiveTrackColor: Color(0xB3787880),
+                  thumbColor: Colors.white,
+                  thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15)),
+              child: Slider(
+                value: _currentSliderValue,
+                min: 0,
+                max: 100,
+                divisions: 5,
+                onChanged: (double value) {
+                  setState(() {
+                    _currentSliderValue = value;
+                  });
+                },
               ),
             ),
           ),

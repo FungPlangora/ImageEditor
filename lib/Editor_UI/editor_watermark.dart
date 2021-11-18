@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class EditorWaterMark extends StatefulWidget {
   const EditorWaterMark({Key? key}) : super(key: key);
@@ -32,9 +31,9 @@ class _EditorWaterMark extends State<EditorWaterMark>{
               padding: EdgeInsets.only(left: 10),
               child: SizedBox(
                 height: screenHeight/7,
-                width: screenWidth/20,
+                width: screenWidth/25,
                 child: GestureDetector(
-                    child: Image.asset("assets/images/icon_custom_watermark.png"),
+                    child: Image.asset("assets/images/icon_custom_watermark.png", fit: BoxFit.contain),
                   onTap: () async{
                     FilePickerResult? result = await FilePicker.platform.pickFiles(type: FileType.image);
                     if (result == null) return;
@@ -52,7 +51,7 @@ class _EditorWaterMark extends State<EditorWaterMark>{
               height: screenHeight/7,
               width: screenWidth/20,
               child: GestureDetector(
-                child: Image.asset("assets/images/icon_default_watermark.png"),
+                child: Image.asset("assets/images/icon_default_watermark.png", fit: BoxFit.contain),
                 onTap: () async{
                   print("You selected default watermark");
                 },
@@ -62,7 +61,7 @@ class _EditorWaterMark extends State<EditorWaterMark>{
               height: screenHeight/7,
               width: screenWidth/1.2,
               child: ListView.builder(
-                shrinkWrap: true,
+                itemExtent: 100.0,
                 scrollDirection: Axis.horizontal,
                 itemCount: userPickFilesWaterMarks.length,
                 itemBuilder: (context, index) {
@@ -71,9 +70,7 @@ class _EditorWaterMark extends State<EditorWaterMark>{
                       print('You selected custom added water marks ${userPickFilesWaterMarks[index].path.toString()}');
                     },
                     child: Container(
-                        width: 50,
-                        height: 50,
-                        child: Image.file(File(userPickFilesWaterMarks[index].path.toString()))
+                        child: Image.file(File(userPickFilesWaterMarks[index].path.toString()), fit: BoxFit.contain)
                     ),
                   );
                 },
