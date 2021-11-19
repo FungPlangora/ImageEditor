@@ -8,7 +8,6 @@ class EditorFilter extends StatelessWidget{
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery. of(context). size. width;
     double screenHeight = MediaQuery. of(context). size. height;
-    double itemListWidth = screenWidth - (screenWidth * 0.80);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -19,12 +18,14 @@ class EditorFilter extends StatelessWidget{
               height: screenHeight/7.5,
               width: screenWidth,
               child: Padding(
-                padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
                 child: ListView(
-                  itemExtent: 100.0,
                   scrollDirection: Axis.horizontal,
                   children: [
-                    SizedBox(
+                    ConstrainedBox(
+                      constraints: const BoxConstraints.expand(
+                          width: 85,
+                      ),
                       child: GestureDetector(
                         child: Image.asset("assets/images/icon_filter_original.png"),
                         onTap: (){
@@ -32,7 +33,10 @@ class EditorFilter extends StatelessWidget{
                         },
                       ),
                     ),
-                    SizedBox(
+                    ConstrainedBox(
+                      constraints: const BoxConstraints.expand(
+                          width: 85
+                      ),
                       child: GestureDetector(
                         child: Image.asset("assets/images/icon_filter_vintage.png"),
                         onTap: (){
@@ -40,7 +44,10 @@ class EditorFilter extends StatelessWidget{
                         },
                       ),
                     ),
-                    SizedBox(
+                    ConstrainedBox(
+                      constraints: const BoxConstraints.expand(
+                          width: 85
+                      ),
                       child: GestureDetector(
                         child: Image.asset("assets/images/icon_filter_pastel.png"),
                         onTap: (){
@@ -48,7 +55,10 @@ class EditorFilter extends StatelessWidget{
                         },
                       ),
                     ),
-                    SizedBox(
+                    ConstrainedBox(
+                      constraints: const BoxConstraints.expand(
+                          width: 85
+                      ),
                       child: GestureDetector(
                         child: Image.asset("assets/images/icon_filter_golden.png"),
                         onTap: (){
@@ -56,7 +66,10 @@ class EditorFilter extends StatelessWidget{
                         },
                       ),
                     ),
-                    SizedBox(
+                    ConstrainedBox(
+                      constraints: const BoxConstraints.expand(
+                          width: 85
+                      ),
                       child: GestureDetector(
                         child: Image.asset("assets/images/icon_filter_dramatic.png"),
                         onTap: (){
@@ -64,15 +77,21 @@ class EditorFilter extends StatelessWidget{
                         },
                       ),
                     ),
-                    SizedBox(
+                    ConstrainedBox(
+                      constraints: const BoxConstraints.expand(
+                          width: 85
+                      ),
                       child: GestureDetector(
                         child: Image.asset("assets/images/icon_filter_nenu.png"),
                         onTap: (){
-                          print("Dramatic Filter is pressed");
+                          print("Nenu Filter is pressed");
                         },
                       ),
                     ),
-                    SizedBox(
+                    ConstrainedBox(
+                      constraints: const BoxConstraints.expand(
+                          width: 85
+                      ),
                       child: GestureDetector(
                         child: Image.asset("assets/images/icon_filter_cali.png"),
                         onTap: (){

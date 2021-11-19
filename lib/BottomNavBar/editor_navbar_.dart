@@ -6,10 +6,11 @@ import 'package:learn_rust_with_flutter/Editor_UI/editor_filter.dart';
 import 'package:learn_rust_with_flutter/Editor_UI/editor_watermark.dart';
 
 class EditorBottomNavBar extends StatefulWidget {
-  const EditorBottomNavBar({Key? key}) : super(key: key);
+  final Function openCallback;
+  const EditorBottomNavBar({Key? key, required this.openCallback}) : super(key: key);
 
   @override
-  _EditorBottomNavBar createState() => new _EditorBottomNavBar();
+  _EditorBottomNavBar createState() => _EditorBottomNavBar();
 }
 
 class _EditorBottomNavBar extends State<EditorBottomNavBar> {
@@ -17,23 +18,25 @@ class _EditorBottomNavBar extends State<EditorBottomNavBar> {
   bool editorTextModeTap = false;
   bool editorWaterMarkModeTap = false;
   bool editorFilterModeTap = false;
-  GlobalKey<ExpandableBottomSheetState> key = new GlobalKey();
+  GlobalKey<ExpandableBottomSheetState> key = GlobalKey();
   double _currentSliderValue = 0;
 
   void _untoggle() {
     setState(() {
         key.currentState!.contract();
+        widget.openCallback(false);
     });
   }
   void _toggle() {
     setState(() {
       key.currentState!.expand();
+      widget.openCallback(true);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery. of(context).size.height;
+    double screenHeight = MediaQuery.of(context).size.height;
     return ExpandableBottomSheet(
       key: key,
       enableToggle: true,
@@ -81,7 +84,7 @@ class _EditorBottomNavBar extends State<EditorBottomNavBar> {
                 onTap: (){
                   print("im 1");
                   editorTextModeTap = !editorTextModeTap;
-                  if(editorTextModeTap == true){
+                  if(editorTextModeTap){
                     _toggle();
                     editorWaterMarkModeTap = false;
                     editorFilterModeTap = false;

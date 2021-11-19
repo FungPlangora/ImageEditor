@@ -30,8 +30,7 @@ class _EditorWaterMark extends State<EditorWaterMark>{
             Padding(
               padding: EdgeInsets.only(left: 10),
               child: SizedBox(
-                height: screenHeight/7,
-                width: screenWidth/25,
+                height: 60,
                 child: GestureDetector(
                     child: Image.asset("assets/images/icon_custom_watermark.png", fit: BoxFit.contain),
                   onTap: () async{
@@ -48,8 +47,7 @@ class _EditorWaterMark extends State<EditorWaterMark>{
               ),
             ),
             SizedBox(
-              height: screenHeight/7,
-              width: screenWidth/20,
+              height: 100,
               child: GestureDetector(
                 child: Image.asset("assets/images/icon_default_watermark.png", fit: BoxFit.contain),
                 onTap: () async{
@@ -59,7 +57,7 @@ class _EditorWaterMark extends State<EditorWaterMark>{
             ),
             SizedBox(
               height: screenHeight/7,
-              width: screenWidth/1.2,
+              width: screenWidth/1.7,
               child: ListView.builder(
                 itemExtent: 100.0,
                 scrollDirection: Axis.horizontal,

@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:flutter/services.dart';
 
 import 'package:learn_rust_with_flutter/BottomNavBar/editor_navbar_.dart';
 
@@ -83,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage>  {
         },
       ),
       appBar: AppBar(
+        systemOverlayStyle: const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
@@ -155,10 +157,16 @@ class _MyHomePageState extends State<MyHomePage>  {
   }
 }
 
-class ImageEditorView extends StatelessWidget{
+class ImageEditorView extends StatefulWidget {
   final String file;
-
   const ImageEditorView({Key? key, required this.file}) : super(key: key);
+
+  @override
+  _ImageEditorViewState createState() => _ImageEditorViewState();
+}
+
+class _ImageEditorViewState extends State<ImageEditorView> {
+  bool opened = false;
 
   void _openDialog(context) {
     showCupertinoDialog(
@@ -189,26 +197,26 @@ class ImageEditorView extends StatelessWidget{
               },
             ),
             CupertinoButton(
-              child: const Text('Cancel'),
-              onPressed: () {
-                print('Cancel and stay on current page');
-                Navigator.of(context).pop();
-              }
+                child: const Text('Cancel'),
+                onPressed: () {
+                  print('Cancel and stay on current page');
+                  Navigator.of(context).pop();
+                }
             ),
           ],
         )
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar (
+        systemOverlayStyle: const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
         leading: IconButton(
-            onPressed: (){
-              _openDialog(context);
-              },
-            icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: (){
+            _openDialog(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios_new),
         ),
         iconTheme: const IconThemeData(
           color: Colors.black,
@@ -233,29 +241,26 @@ class ImageEditorView extends StatelessWidget{
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
-      bottomNavigationBar: const EditorBottomNavBar(),
+      bottomNavigationBar: EditorBottomNavBar(openCallback: (bool o) => setState(() => opened = o)),
       body: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 390, top: 20),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
                   child: Image.file(
-                      File(file)
-                   ),
+                      File(widget.file)
                   ),
                 ),
-            ],
+                opened ? Container(height: 340) : Container(height: 0),
+              ],
+            ),
           ),
-        ),
         ],
       ),
       extendBody: true,
     );
   }
 }
-
