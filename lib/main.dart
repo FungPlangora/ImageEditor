@@ -84,6 +84,18 @@ class _MyHomePageState extends State<MyHomePage>  {
         },
       ),
       appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            userPickFiles.isEmpty ? const Padding(
+              padding: EdgeInsets.only(top: 30),
+                child: Text("")
+            ): const Padding(
+                padding: EdgeInsets.only(top: 30),
+                child: Text("Continue Editing", style: TextStyle(color: Colors.black, fontSize: 24))
+            ),
+          ],
+        ),
         systemOverlayStyle: const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -183,9 +195,7 @@ class _ImageEditorViewState extends State<ImageEditorView> {
                   //Current list being used is <PlatformFile> userPickFiles = [];
 
                   print('Save changes and go back to main page');
-                  // Then close the dialog
                   Navigator.of(context).pop();
-                  // go back to main page
                   Navigator.pop(context);
                 }),
             CupertinoButton(
@@ -199,6 +209,7 @@ class _ImageEditorViewState extends State<ImageEditorView> {
             CupertinoButton(
                 child: const Text('Cancel'),
                 onPressed: () {
+
                   print('Cancel and stay on current page');
                   Navigator.of(context).pop();
                 }
@@ -209,6 +220,7 @@ class _ImageEditorViewState extends State<ImageEditorView> {
   }
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery. of(context). size. height;
     return Scaffold(
       appBar: AppBar (
         systemOverlayStyle: const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
@@ -254,7 +266,7 @@ class _ImageEditorViewState extends State<ImageEditorView> {
                       File(widget.file)
                   ),
                 ),
-                opened ? Container(height: 340) : Container(height: 0),
+                opened ? Container(height: screenHeight/2.8) : Container(height: 0),
               ],
             ),
           ),

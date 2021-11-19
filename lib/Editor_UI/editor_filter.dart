@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:learn_rust_with_flutter/main.dart';
 
 class EditorFilter extends StatelessWidget{
   const EditorFilter({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class EditorFilter extends StatelessWidget{
               height: screenHeight/7.5,
               width: screenWidth,
               child: Padding(
-                padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+                padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
@@ -111,7 +112,7 @@ class EditorFilter extends StatelessWidget{
             child: Container(
               color: Colors.transparent,
               child: Padding(
-                padding: EdgeInsets.only(left: 20, right: 20),
+                padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
